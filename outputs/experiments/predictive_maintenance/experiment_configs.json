@@ -1,0 +1,318 @@
+[
+  {
+    "experiment_id": "exp001",
+    "stage": "baseline",
+    "model_name": "LogisticRegression",
+    "feature_set": "base",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "none",
+    "hyperparameter_config": "baseline",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "class_weight": "balanced"
+    }
+  },
+  {
+    "experiment_id": "exp002",
+    "stage": "baseline",
+    "model_name": "RandomForest",
+    "feature_set": "base",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "class_weight",
+    "hyperparameter_config": "baseline",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "class_weight": "balanced",
+      "max_depth": 8,
+      "n_estimators": 300
+    }
+  },
+  {
+    "experiment_id": "exp003",
+    "stage": "baseline",
+    "model_name": "ExtraTrees",
+    "feature_set": "base",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "class_weight",
+    "hyperparameter_config": "baseline",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "class_weight": "balanced",
+      "max_depth": 8,
+      "n_estimators": 300
+    }
+  },
+  {
+    "experiment_id": "exp004",
+    "stage": "baseline",
+    "model_name": "LightGBM",
+    "feature_set": "base",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "baseline",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 200,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp005",
+    "stage": "baseline",
+    "model_name": "XGBoost",
+    "feature_set": "base",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "baseline",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 200,
+      "learning_rate": 0.05,
+      "max_depth": 4
+    }
+  },
+  {
+    "experiment_id": "exp006",
+    "stage": "feature",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "feature_all",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp007",
+    "stage": "feature",
+    "model_name": "XGBoost",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "feature_all",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "max_depth": 4
+    }
+  },
+  {
+    "experiment_id": "exp008",
+    "stage": "sampling",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "random_over",
+    "hyperparameter_config": "over_sampling",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp009",
+    "stage": "sampling",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "random_under",
+    "hyperparameter_config": "under_sampling",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp010",
+    "stage": "sampling",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "smote",
+    "hyperparameter_config": "smote",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp011",
+    "stage": "outlier",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "p01_p99_clip",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "clip_p01_p99",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp012",
+    "stage": "outlier",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "iqr_clip",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "clip_iqr",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp013",
+    "stage": "outlier",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "outlier_flags",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "outlier_flags",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp014",
+    "stage": "missing",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "missing_indicator",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "missing_indicator",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp015",
+    "stage": "missing",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "stress_missing_5pct",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "stress_missing_5pct",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 250,
+      "learning_rate": 0.05,
+      "num_leaves": 20
+    }
+  },
+  {
+    "experiment_id": "exp016",
+    "stage": "hparam",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "tuned_regularized",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 500,
+      "learning_rate": 0.03,
+      "num_leaves": 15,
+      "min_child_samples": 50,
+      "subsample": 0.85,
+      "colsample_bytree": 0.85,
+      "reg_lambda": 1.0
+    }
+  },
+  {
+    "experiment_id": "exp017",
+    "stage": "hparam",
+    "model_name": "LightGBM",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "tuned_deeper",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 400,
+      "learning_rate": 0.04,
+      "num_leaves": 31,
+      "min_child_samples": 20,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9
+    }
+  },
+  {
+    "experiment_id": "exp018",
+    "stage": "hparam",
+    "model_name": "XGBoost",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "tuned_regularized",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 500,
+      "learning_rate": 0.03,
+      "max_depth": 3,
+      "min_child_weight": 3,
+      "subsample": 0.85,
+      "colsample_bytree": 0.85,
+      "reg_lambda": 3.0
+    }
+  },
+  {
+    "experiment_id": "exp019",
+    "stage": "hparam",
+    "model_name": "XGBoost",
+    "feature_set": "all_engineered",
+    "missing_strategy": "median_mode",
+    "outlier_strategy": "none",
+    "sampling_strategy": "scale_pos_weight",
+    "hyperparameter_config": "tuned_deeper",
+    "threshold_rule": "0.5",
+    "model_params": {
+      "n_estimators": 400,
+      "learning_rate": 0.04,
+      "max_depth": 5,
+      "min_child_weight": 1,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9
+    }
+  }
+]

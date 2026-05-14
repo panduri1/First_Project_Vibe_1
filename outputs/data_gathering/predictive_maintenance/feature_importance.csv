@@ -1,0 +1,12 @@
+﻿feature,importance
+num__power_proxy,999
+num__Tool wear [min],913
+num__Rotational speed [rpm],789
+num__Torque [Nm],697
+num__temperature_gap,592
+num__wear_per_torque,580
+num__Process temperature [K],495
+num__Air temperature [K],474
+cat__Type_M,83
+cat__Type_L,41
+cat__Type_H,37

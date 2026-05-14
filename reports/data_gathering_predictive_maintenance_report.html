@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Predictive Maintenance Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; color: #222; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 14px; background: #fafafa; }
+    .card .value { font-size: 24px; font-weight: 700; }
+    img { max-width: 760px; width: 100%; border: 1px solid #eee; margin: 8px 0 24px; }
+    table { border-collapse: collapse; margin: 8px 0 24px; }
+    th, td { border: 1px solid #ddd; padding: 6px 10px; }
+  </style>
+</head>
+<body>
+  <h1>Machine Predictive Maintenance Report</h1>
+  <p>이 리포트는 Kaggle 데이터셋 <code>shivamb/machine-predictive-maintenance-classification</code>을 기반으로 생성했습니다.</p>
+  <div class="cards">
+    <div class="card"><div>Rows</div><div class="value">10,000</div></div>
+    <div class="card"><div>Columns</div><div class="value">13</div></div>
+    <div class="card"><div>Missing After</div><div class="value">0</div></div>
+    <div class="card"><div>Best Model</div><div class="value">LightGBM</div></div>
+  </div>
+
+  <h2>Data Overview</h2>
+  <p>고장 비율이 낮은 불균형 binary classification 데이터입니다. <code>Failure Type</code>은 결과성 컬럼이므로 1차 예측 feature에서 제외했습니다.</p>
+  <h3>Target Distribution</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Target</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>9661</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>339</td>
+    </tr>
+  </tbody>
+</table>
+  <img src="../outputs/data_gathering/predictive_maintenance/target_distribution.png" alt="Target distribution">
+  <h3>Failure Type Distribution</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Failure Type</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>No Failure</td>
+      <td>9652</td>
+    </tr>
+    <tr>
+      <td>Heat Dissipation Failure</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <td>Power Failure</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>Overstrain Failure</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <td>Tool Wear Failure</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>Random Failures</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+</table>
+  <img src="../outputs/data_gathering/predictive_maintenance/failure_type_distribution.png" alt="Failure type distribution">
+
+  <h2>EDA</h2>
+  <img src="../outputs/data_gathering/predictive_maintenance/correlation_heatmap.png" alt="Correlation heatmap">
+
+  <h2>Model Performance</h2>
+  <p>고장 미탐(False Negative)을 줄이는 것이 중요하므로 recall, F1, PR-AUC를 함께 봐야 합니다.</p>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>model</th>
+      <th>accuracy</th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1</th>
+      <th>roc_auc</th>
+      <th>pr_auc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LightGBM</td>
+      <td>0.9885</td>
+      <td>0.8261</td>
+      <td>0.8382</td>
+      <td>0.8321</td>
+      <td>0.9794</td>
+      <td>0.8973</td>
+    </tr>
+    <tr>
+      <td>RandomForest</td>
+      <td>0.9835</td>
+      <td>0.7108</td>
+      <td>0.8676</td>
+      <td>0.7815</td>
+      <td>0.9840</td>
+      <td>0.8615</td>
+    </tr>
+    <tr>
+      <td>XGBoost</td>
+      <td>0.9820</td>
+      <td>0.6860</td>
+      <td>0.8676</td>
+      <td>0.7662</td>
+      <td>0.9822</td>
+      <td>0.8792</td>
+    </tr>
+    <tr>
+      <td>LogisticRegression</td>
+      <td>0.8635</td>
+      <td>0.1827</td>
+      <td>0.8676</td>
+      <td>0.3018</td>
+      <td>0.9376</td>
+      <td>0.4432</td>
+    </tr>
+  </tbody>
+</table>
+  <img src="../outputs/data_gathering/predictive_maintenance/confusion_matrix.png" alt="Confusion matrix">
+  <img src="../outputs/data_gathering/predictive_maintenance/roc_curve.png" alt="ROC curve">
+  <img src="../outputs/data_gathering/predictive_maintenance/precision_recall_curve.png" alt="Precision recall curve">
+
+  <h2>Feature Evidence</h2>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>feature</th>
+      <th>importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>num__power_proxy</td>
+      <td>999</td>
+    </tr>
+    <tr>
+      <td>num__Tool wear [min]</td>
+      <td>913</td>
+    </tr>
+    <tr>
+      <td>num__Rotational speed [rpm]</td>
+      <td>789</td>
+    </tr>
+    <tr>
+      <td>num__Torque [Nm]</td>
+      <td>697</td>
+    </tr>
+    <tr>
+      <td>num__temperature_gap</td>
+      <td>592</td>
+    </tr>
+    <tr>
+      <td>num__wear_per_torque</td>
+      <td>580</td>
+    </tr>
+    <tr>
+      <td>num__Process temperature [K]</td>
+      <td>495</td>
+    </tr>
+    <tr>
+      <td>num__Air temperature [K]</td>
+      <td>474</td>
+    </tr>
+    <tr>
+      <td>cat__Type_M</td>
+      <td>83</td>
+    </tr>
+    <tr>
+      <td>cat__Type_L</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <td>cat__Type_H</td>
+      <td>37</td>
+    </tr>
+  </tbody>
+</table>
+  <img src="../outputs/data_gathering/predictive_maintenance/feature_importance.png" alt="Feature importance">
+
+  <h2>Logic Tree Summary</h2>
+  <ul>
+    <li>Root: 설비가 고장 위험 상태인가?</li>
+    <li>Branch 1: 공구 마모와 토크 조합이 고장 위험을 높이는지 확인.</li>
+    <li>Branch 2: 공정 온도와 공기 온도 차이가 열 관련 고장 위험과 연결되는지 확인.</li>
+    <li>Branch 3: 회전속도와 토크로 계산한 power proxy가 과부하 패턴을 설명하는지 확인.</li>
+  </ul>
+</body>
+</html>
